@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <math.h>
+int main(void) {
+  int x1;
+  int x2;
+  int y1;
+  int y2;
+  float distancia;
+  printf ("Informe as coordenadas  do pto 1 ( x e y):");
+  scanf ("%i %i",&x1,&y1);
+  printf ("Informe as coordenadas  do pto 2 ( x e y):");
+  scanf ("%i %i",&x2,&y2);  
+  distancia = sqrt (((x1 - x2)*(x1 - x2))+(y1-y2)*(y1-y2));
+  printf ("A distância é de: %.2f", distancia);
+  return 0;
+}

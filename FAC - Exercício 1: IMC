@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(void) {
+  int idade;
+  float peso, altura, IMC;
+  printf ("Qual é a sua idade?");
+  scanf("%d",&idade);
+  printf ("Qual é a sua altura em metros?");
+  scanf("%f",&altura);
+  printf ("Qual é o seu peso em quilos?");
+  scanf("%f",&peso);
+  IMC = peso/(altura*altura);
+  printf ("\nIMC: %.2f", IMC);
+  return 0;
+}

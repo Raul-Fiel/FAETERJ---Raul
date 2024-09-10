@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(void) {
+  int codproduto,xx,yy;
+  float price,desconto,total;
+  printf ("Qual é o código do produto?");
+  scanf ("%i",&codproduto);
+  xx=codproduto/100;
+  yy=codproduto%100;
+  price = (xx*15)+yy;
+  desconto=yy/100.0*price;
+  total=price-desconto;
+  printf("Total a pagar:R$ %.2f", total);
+  return 0;
+}

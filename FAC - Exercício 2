@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main(void) {
+  int numero;
+  int suc;
+  int ant;
+  printf("Informe um número:");
+  scanf ("%i",&numero);
+  suc = numero + 1;
+  ant = numero -1;
+  printf("sucessor deste número é %i", suc);
+  printf("\nantecessor deste número é %i", ant);
+  return 0;
+}

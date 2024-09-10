@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <math.h>
+int main(void) {
+  int dias;
+  int semanas;
+  int restante;
+  printf("Informe o número de dias:");
+  scanf ("%i",&dias);
+  semanas=dias/7;
+  restante=dias%7;
+  printf ("%i semana(s) e %i dia(s)", semanas, restante);
+  return 0;
+}

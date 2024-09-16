@@ -1,0 +1,15 @@
+//THALLES FERREIRA COSTA && RAUL DE SOUZA FIEL FARIA//
+#include <stdio.h>
+void retorna_matricula (int matricula, int *pAno, int *pSemestre, int *pDisciplina, int *pTurno, int *pTurma){
+  (*pAno)=matricula/10000000;
+  (*pSemestre)=(matricula/1000000) % 10;
+  (*pDisciplina)=(matricula/100)%10000;
+  (*pTurno)=(matricula/10)%10;
+  (*pTurma)=matricula%10;
+}
+int main(void) {
+  int ano,semestre,disciplina,turno,turma;
+  retorna_matricula(241113211, &ano, &semestre, &disciplina, &turno,&turma);
+  printf("Ano: 20%d\nSemestre: %d\nA Disciplina: %d\nO Turno é: %d\nO Número Identificador: %d",ano,semestre,disciplina,turno,turma);
+  return 0;
+}

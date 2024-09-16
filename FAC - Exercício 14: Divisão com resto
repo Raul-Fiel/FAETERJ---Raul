@@ -1,0 +1,28 @@
+//THALLES FERREIRA COSTA && RAUL DE SOUZA FIEL FARIA//
+#include <stdio.h>
+int DivInt(int dividendo, int divisor, int *quociente, int *resto) {
+  if (divisor == 0) {
+      if (dividendo == 0) {
+          return -1;
+      } else {
+          return 0;
+      }
+  } else {
+      *quociente = dividendo / divisor;
+      *resto = dividendo % divisor;
+      return 1;
+  }
+}
+
+int main(void) {
+  // a = dividendo, b= divisor, q = quociente, r = resto, st = Válida ou Não //
+  int a, b, q, r, st;
+  scanf("%d%d", &a, &b);
+  st = DivInt(a, b, &q, &r);
+  if (st == 1) {
+      printf("%d / %d = %d com resto %d\n", a, b, q, r);
+  } else {
+      printf("Erro - divisão por 0 ou indeterminada\n");
+  }
+  return 0;
+}

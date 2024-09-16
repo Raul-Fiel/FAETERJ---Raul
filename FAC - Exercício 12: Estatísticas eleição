@@ -1,0 +1,52 @@
+///Autores: THALLES FERREIRA COSTA && RAUL DE SOUZA FIEL FARIA///
+/// O seguinte código tem o objetivo de registrar as notas de dois candidatos (o número de candidatos pode ser alterado de acordo com a necessidade), seguindo os resultados dados de acordo com regiões (CEP nesse caso, mas podendo ser alterado para setores, salas, etc...), revelando a média das avaliações, a região que teve a maior rejeição (ambos os candidatos com nota 0), e quantas tiveram o mesmo número de rejeições.///
+#include <stdio.h>
+int main(void) {
+  int cep,  nota_00, cep_maior_00, cont_ent, cont_a, cont_b,cont_igual_maior,cep_maior_rejeicao;
+  float nota_a, nota_b, soma_a, soma_b, media_a, media_b, total_entrevistados;
+  printf("Qual o cep?\n");
+  scanf("%d",&cep);
+  cep_maior_00= -1;
+  while(cep>0){
+    nota_00 = 0;
+    cep_maior_00 = 0;
+    cont_ent = 0;
+    cont_a = 0;  
+    cont_b = 0;
+    soma_a = 0;
+    soma_b = 0;
+    printf("Quantos serão entrevistados?\n");
+    scanf("%f",&total_entrevistados);
+    while(cont_ent<total_entrevistados){
+          printf("Qual a nota para o A?\n");
+          scanf("%f",&nota_a);
+          printf("Qual a nota para o B?\n");
+         scanf("%f",&nota_b);
+          soma_a=soma_a+nota_a;
+          soma_b=soma_b+nota_b;
+          cont_ent++;
+          if(nota_a==0 && nota_b==0){
+              nota_00++;
+          }
+    }
+    if(nota_00>cep_maior_00){
+      cep_maior_00 = nota_00;
+      cep_maior_rejeicao=cep;
+      cont_igual_maior = 1;
+    }
+    else if (nota_00==cep_maior_00){
+      cont_igual_maior++;
+    }
+    media_a= soma_a/total_entrevistados;
+    media_b= soma_b/total_entrevistados;
+    printf("\n Média candidato A: %.2f", media_a);
+    printf("\n Média candidato B: %.2f", media_b);
+    printf("\n Número de rejeições da região: %d", nota_00);
+    printf("\n Qual é o cep?");
+    scanf("%d",&cep);
+  }
+  //ESTATÌSTICAS//
+  printf("\nO CEP com maior rejeição: %d",cep_maior_rejeicao);
+  printf("\nQuantidade de CEPs com o mesmo número de rejeição: %d",cont_igual_maior);
+return 0;
+}

@@ -1,0 +1,30 @@
+// O Seguinte código devolve o tamanho de um determinado produto de acordo com o peso (em quilos) e altura (em centímetros)
+// Os parâmetros escolhidos são: 
+//- Menos de 50kg e menos de 150cm = tamanho pequeno
+//- Menos de 50kg e 150cm ou mais = tamanho médio
+//- 50kg a 100kg e menos de 150cm = tamanho médio
+//- 50kg a 100kg e 150cm ou mais = tamanho grande
+//- mais de 100kg e qualquer altura = tamanho grande
+#include <stdio.h>
+void classifica_produto(float peso, float altura){
+  if(peso>100||(peso>=50&&altura>=150)){
+    printf ("Grande");
+  }
+  else{
+    if(peso>=50||altura>=150){
+      printf("Médio");
+    }
+    else{
+      printf("Pequeno");
+    }
+  }
+}
+int main(void) {
+  float peso, altura;
+  printf("informe o peso:");
+  scanf("%f",&peso);
+  printf("informe a altura:");
+  scanf("%f",&altura);
+  classifica_produto(peso,altura);
+  return 0;
+}

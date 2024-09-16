@@ -1,0 +1,76 @@
+#include <stdio.h>
+/*
+  Faça um programa que obtenha a matrícula , a nota da prova e a média dos trabalhos dos  alunos de uma turma, mostrando a média final de cada um dos alunos da turma
+  O término da entrada de dados ocorre ao digitar uma matrícula <=0
+  A média de um aluno é calculada da seguinte forma:
+  0.85*nota da prova+ 0.15*média dos trabalhos
+
+  Seu programa deve responder:
+  V1- Quantos alunos com nota acima de 7 e respectivo %?
+  V2- Quantos alunos com nota abaixo de 3 e respectivo %?
+  v3 - Qual a média da turma?
+  V4 - Quantos alunos nota de prova < nota de trabalhos?
+  V5 - Qual a nota média de trabalhos dos alunos com media <6?
+*/
+
+int main(void) {
+int matricula, nAlunos, cont;
+  float NotaPro, MedTrab, MedFinal,contAl7,MenAlt3, perc, MedTurma,provmenortrabalho, SomamedTrab, mediamenor6, alunos;
+
+  alunos = 0;
+  cont =1;
+  contAl7 = 0;
+  MenAlt3 = 0;
+  MedTurma = 0; 
+  provmenortrabalho = 0; 
+do{
+  printf("Qual a matrícula do %d º aluno?", cont);
+  scanf("%d", &matricula);
+
+  cont ++;
+  
+  printf("Qual a nota da prova do  aluno %d?", matricula);
+  scanf("%f", &NotaPro);
+  printf("Qual a média do trabalho do aluno %d?", matricula);
+scanf("%f",&MedTrab);
+  MedFinal = NotaPro*0.85+MedTrab*0.15;
+
+
+  printf("O aluno com a matrícula %d obteve a média do trabalho %.2f, a nota de sua prova foi %.2f e sua média final foi %.2f\n", matricula,MedTrab,NotaPro,MedFinal);
+  printf("\n ================");
+
+if(MedFinal>7){
+  contAl7++;
+}else if(MedFinal<6){
+  alunos++;
+  SomamedTrab+=MedTrab;
+  if(MedFinal<3){
+    MenAlt3++;
+  }  
+}
+if(NotaPro<MedTrab){
+    provmenortrabalho++;
+}
+MedTurma = MedTurma + MedFinal;
+
+  printf("Qual a matrícula do %d º aluno?", cont);
+  scanf("%d", &matricula);
+
+}while(matricula>0);
+  printf("\nO número de alunos que ficaram acima de 7 foi: %.2f", contAl7);
+  perc= contAl7*100.0/cont;
+  printf("\nSeu percentual foi de: %.1f", perc);
+  printf("\nO número de alunos com a média abaixa de 3 foi de: %.2f",MenAlt3);
+  perc=MenAlt3*100.0/cont;
+  printf("\nE seu percentual foi de: %.2f", perc);
+  MedTurma=MedTurma/nAlunos;
+  printf("\nA média da turma foi: %.2f", MedTurma);
+  printf("\n Os alunos que ficaram com a nota da prova menor que a do trabalho foi de: %.2f", provmenortrabalho);
+
+ if (alunos >0) {
+   mediamenor6 = SomamedTrab/alunos;
+    printf("\nA média de trabalho dos alunos que ficaram com a média menor que 6 foi de: %.2f", mediamenor6);
+ }
+
+  return 0;
+}

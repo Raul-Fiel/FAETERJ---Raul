@@ -1,0 +1,16 @@
+#include <stdio.h>
+void tempo(int minutos){
+  int resto,hora;
+  hora= minutos/60;
+  resto = minutos%60;
+  printf("%i:%i",hora,resto);
+  return; 
+}
+int main(void) {
+  int minutos;
+  printf("Informe os minutos:");
+  scanf("%i",&minutos);
+  void tempo(int minutos);
+  tempo(minutos);
+  return 0;
+}

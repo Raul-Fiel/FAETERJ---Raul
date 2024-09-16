@@ -1,0 +1,23 @@
+#include <stdio.h>
+float transformaColherEmMl(float colher){
+  float ml;
+  ml=colher*15;
+  return ml;
+}
+float transformarxicarasemml(float xicara){
+  float ml;
+  ml=(xicara*(transformaColherEmMl(16)));
+  return ml;
+}
+void exibeEquiv  (float xicara, float ml){
+  printf("%.2f xicaras== %.2f ml",xicara, ml);
+  return;
+}
+int main(void) {
+  float xicara, ml;
+  printf("Quantas xícaras de mel?");
+  scanf("%f",&xicara);
+  ml=transformarxicarasemml(xicara);
+  exibeEquiv(xicara,ml);
+  return 0;
+}

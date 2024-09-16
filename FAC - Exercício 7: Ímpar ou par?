@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void) {
+  int entrada,numero, resto;
+  printf ("Informe um número inteiro:");
+  scanf ("d%", &entrada);
+  numero=entrada/2;
+  resto=entrada%2;
+  if (resto==0) {
+    printf ("Este número é par");
+  }
+  else {
+    printf ("Este número é ímpar");
+  }
+  return 0;
+}

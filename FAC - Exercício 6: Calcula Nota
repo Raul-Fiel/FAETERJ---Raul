@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main(void) {
+  float nota1 , nota2;
+  float media;
+  printf("Informe a nota da sua AV1:");
+  scanf("%f", &nota1);
+  printf("Informe a nota da sua AV2:");
+  scanf("%f", &nota2);
+  media = (nota1+nota2)/2;
+  printf ("Sua média é de:%.2f", media);
+  if (media>=6) {
+    printf (" Parabéns!");
+    if (media>=9) {
+      printf (" Gostaríamos de convidá-lo para a monitoria!");
+    }
+  }
+  if (media<=6 && media>=4){
+    printf (" Infelizmente você ainda não foi aprovado, terá que realizar a prova final");}
+  if (media<4){
+      printf (" Infelizmente você não foi aprovado");
+  }
+  
+  return 0;
+}

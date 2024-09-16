@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+float areatrapezio(float altura, float baseM,float basem){
+  float area;
+  area=((baseM+basem)*altura)/2;
+  return area;  
+}
+float detraiocirc(float altura, float baseM, float basem){
+  float raiocirc;
+  raiocirc=((baseM-basem)/2+(sqrt((altura*altura)+((baseM-basem)/2)*(baseM-basem)/2)));
+  return raiocirc;
+}
+float areacirculo(float raio){
+  float area;
+  area=(raio*raio)*3.14;
+  return area;
+}
+
+int main(void) {
+  float areatrap, baseM, basem, altura, raiocirc, areacirc;
+  printf("Qual é a base maior?");
+  scanf("%f",&baseM);
+  printf("Qual é a base menor?");
+  scanf("%f",&basem);
+  printf("Qual é a altura?");
+  scanf("%f",&altura);
+  areatrap=areatrapezio(altura,baseM,basem);
+  raiocirc= detraiocirc(altura,baseM,basem);
+  areacirc= areacirculo(raiocirc);
+  printf("A área é de: %.2f\n", areatrap);
+  printf("O raio do círculo circunscrito é de: %.2f\n",raiocirc);
+  printf("A área do círculo circunscrito é de: %.2f\n",areacirc);
+  return 0;
+}

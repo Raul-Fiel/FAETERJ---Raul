@@ -1,0 +1,35 @@
+//Raul de Souza Fiel Faria
+#include <stdio.h>
+int busca(int v[], int n, int valor) {
+  for (int i = 0; i < n; i++) {
+    if (v[i] == valor) {
+      return i;
+    }
+  }
+return -1;
+}
+int main() {
+  int vIdCandidato[6] = {12, 7, 1, 19, 14, 8};
+  int vContaVoto[6] = {0};
+  int voto = 0;
+  printf("Voto? (Digite um número negativo para terminar): ");
+  scanf("%i", &voto);
+  while (voto >= 0) {
+    int pos = busca(vIdCandidato, 6, voto);
+    if (pos != -1) {
+      vContaVoto[pos]++;
+      printf("\nVoto registrado para o candidato %d\n", vIdCandidato[pos]);
+    }else {
+      printf("\nCandidato não encontrado\n");
+    }
+
+    printf("Voto? (Digite um número negativo para terminar): ");
+    scanf("%i", &voto);
+  }
+  printf("\nContagem de votos:\n");
+  for (int i = 0; i < 6; i++) {
+      printf("Votos do candidato %i: %d\n", vIdCandidato[i], vContaVoto[i]);
+  }
+
+  return 0;
+}

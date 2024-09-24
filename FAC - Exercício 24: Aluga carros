@@ -1,0 +1,106 @@
+#include <stdio.h>
+#define MAX_CLIENTES 100
+#define MAX_MODELOS 40
+#define UNIDADES_POR_MODELO 8
+#define MODELO_NUM 0
+#define CAMBIO 1
+#define COMBUSTIVEL 2
+#define DIARIA 3
+#define SITUACAO_INICIO 4
+void inicializa_clientes(int *v_clientes, int num_clientes) {
+  for (int i = 0; i < num_clientes; i++) {
+    v_clientes[i] = i + 1;
+  }
+}
+void inicializa_frota(float frota[MAX_MODELOS][SITUACAO_INICIO + UNIDADES_POR_MODELO], int num_modelos) {
+  for (int i = 0; i < num_modelos; i++) {
+    frota[i][MODELO_NUM] = i + 1;
+    frota[i][CAMBIO] = (i % 5) + 1;
+    frota[i][COMBUSTIVEL] = (i % 6) + 1;
+    frota[i][DIARIA] = 50.0 + (i * 10);
+    for (int j = 0; j < UNIDADES_POR_MODELO; j++) {
+      frota[i][SITUACAO_INICIO + j] = 2;
+    }
+  }
+}
+int verifica_cliente(int *v_clientes, int num_clientes, int id) {
+  for (int i = 0; i < num_clientes; i++) {
+    if (v_clientes[i] == id) return 1;
+  }
+  return 0;
+}
+
+int encontra_modelo(float frota[MAX_MODELOS][SITUACAO_INICIO + UNIDADES_POR_MODELO], int num_modelos, int modelo_num) {
+  for (int i = 0; i < num_modelos; i++) {
+    if ((int)frota[i][MODELO_NUM] == modelo_num) 
+      return i;
+  }
+  return -1;
+}
+int verifica_disponibilidade(float *carro) {
+  for (int i = 0; i < UNIDADES_POR_MODELO; i++) {
+    if ((int)carro[SITUACAO_INICIO + i] == 2) return i;
+  }
+  return -1;
+}
+
+void mostrar_modelos_compativeis(float frota[MAX_MODELOS][SITUACAO_INICIO + UNIDADES_POR_MODELO], int num_modelos, int cambio, int combustivel) {
+  for (int i = 0; i < num_modelos; i++) {
+    if ((int)frota[i][CAMBIO] == cambio && (int)frota[i][COMBUSTIVEL] == combustivel) {
+      printf("Modelo_%d_-_Cambio:_%d, _Combustível:_%d, _Diária:_%.2f\n",(int)frota[i][MODELO_NUM], (int)frota[i][CAMBIO], (int)frota[i][COMBUSTIVEL], frota[i][DIARIA]);
+    }
+  }
+}
+int main(void) {
+  int v_clientes[MAX_CLIENTES];
+  float frota[MAX_MODELOS][SITUACAO_INICIO + UNIDADES_POR_MODELO];
+  int num_clientes = 100, num_modelos = 40;
+  float total_por_combustivel[6] = {0};
+  int id = 0;
+  int sair = 0;
+
+  inicializa_clientes(v_clientes, num_clientes);
+  inicializa_frota(frota, num_modelos);
+
+  while (!sair) {
+    printf("Digite_seu_ID_(número_negativo_para_sair):_");
+    scanf("%d", &id);
+    if (id < 0) {
+        sair = 1;
+    }
+    else if (!verifica_cliente(v_clientes, num_clientes, id)) {
+      printf("ID_de_cliente_inexistente.\n");
+    } 
+    else {
+      int modelo_num;
+      printf("Digite_o_número_do_modelo:_");
+      scanf("%d", &modelo_num);
+      int indice_modelo = encontra_modelo(frota, num_modelos, modelo_num);
+      if (indice_modelo == -1) {
+        printf("Modelo_Inexistente.\n");
+      } 
+      else {
+        int indice_unidade = verifica_disponibilidade(frota[indice_modelo]);
+        if (indice_unidade == -1) {
+          printf("Não_disponível._Modelos_compativeis:\n");
+          mostrar_modelos_compativeis(frota, num_modelos, (int)frota[indice_modelo][CAMBIO], (int)frota[indice_modelo][COMBUSTIVEL]);
+          } 
+        else {
+          int dias;
+          printf("Disponível._Quantas_diárias?_");
+          scanf("%d", &dias);
+          frota[indice_modelo][SITUACAO_INICIO + indice_unidade] = 1;
+          float total = dias * frota[indice_modelo][DIARIA];
+          total_por_combustivel[(int)frota[indice_modelo][COMBUSTIVEL] - 1] += total;
+          printf("Aluguel_realizado._Valor_total:_%.2f\n", total);
+        }
+      }
+    }
+  }
+
+  printf("Valor_total_dos_alugueis_por_tipo_de_combustível:\n");
+  for (int i = 0; i < 6; i++) {
+    printf("Combustível_%d:_%.2f\n", i + 1, total_por_combustivel[i]);
+  }
+  return 0;
+}

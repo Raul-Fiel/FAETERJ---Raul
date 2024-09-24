@@ -1,0 +1,58 @@
+//  Raul de Souza Fiel Faria
+//Escreva a função diaAnterior que receba três endereços de variáveis (dia, mês e ano) com uma
+//data e atualize estas variáveis para o dia anterior.
+//Exemplo: 10/6/2024  9/6/2024; 1/1/2021  31/12/2020
+//Às vezes, as datas de entrega de tarefas de um projeto precisam ser ajustadas para o dia anterior
+//devido a mudanças nas prioridades do projeto ou solicitações dos clientes. Faça um programa, utilizando
+//obrigatoriamente a função diaAnterior, que leia a prioridade de várias tarefas (1 - Normal, 2-Alta) e suas
+//datas previstas para a entrega (dia, mês e ano). As tarefas de prioridade alta devem ter suas datas de
+//entrega ajustadas para o dia anterior e exibidas. Término da entrada de dados: prioridade inválida
+//Ao final, seu programa deve exibir o percentual de tarefasque tiveram suas datas ajustadas para o dia
+//anterior.
+#include <stdio.h>
+int diasDoMes(int mes) { 
+    if (mes == 2) {
+        return 28;
+    }
+    if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+        return 30;
+    }
+    return 31;
+}
+void diaAnterior(int *dia, int *mes, int *ano) {
+    (*dia)--;
+    if (*dia == 0) {
+        (*mes)--;
+        if (*mes == 0) {
+            (*mes) = 12;
+            (*ano)--;
+        }
+        *dia = diasDoMes(*mes);
+    }
+}
+int main() {
+    int prioridade, dia, mes, ano;
+    int totalTarefas = 0;
+    int tarefasAjustadas = 0;
+    printf("prioridade? ");
+    scanf("%d", &prioridade);
+
+    while (prioridade == 1 || prioridade == 2) {
+        printf("data?");
+        scanf("%d %d %d", &dia, &mes, &ano);
+        totalTarefas++;
+        if (prioridade == 2) {
+            diaAnterior(&dia, &mes, &ano);
+            tarefasAjustadas++;
+            printf("data nova: %02d/%02d/%04d\n", dia, mes, ano);
+        }
+        printf("prioridade?");
+        scanf("%d", &prioridade);
+    }
+    if (totalTarefas > 0) {
+        printf("percentual tarefas: %.2f%%\n", (tarefasAjustadas / (float)totalTarefas) * 100);
+    } else {
+        printf("sem tarefas");
+    }
+    return 0;
+}

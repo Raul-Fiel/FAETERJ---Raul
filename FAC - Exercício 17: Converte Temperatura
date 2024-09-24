@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+float celciusKevin(float celcius)
+{
+
+  // metodo 1
+  float kelvin;
+  kelvin = celcius + 273.15;
+  return kelvin;
+
+  /* metodo 2
+  return temperatura + 273.15;
+  */
+}
+
+float kelvinFahrenheit(float celcius)
+{
+
+  float fahrenheit, kelvin;
+  kelvin = celciusKevin(celcius);
+  fahrenheit = (kelvin - 273.15) * 1.8 + 32;
+  return fahrenheit;
+}
+
+void celciusFahrenheit(float celcius)
+{
+
+  float fahrenheit;
+
+  fahrenheit = kelvinFahrenheit(celcius);
+
+  printf("%.1f°C === %.1f°F\n", celcius, fahrenheit);
+}
+
+void exibeResultado(float celcius)
+{
+
+  printf("*******************************\n");
+  printf("      ");
+  celciusFahrenheit(celcius);
+  printf("*******************************");
+}
+
+int main(void)
+{
+  float celcius;
+  printf("informe a temperatura em celsius:");
+  scanf("%f", &celcius);
+  exibeResultado(celcius);
+
+  return 0;
+}

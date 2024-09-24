@@ -1,0 +1,27 @@
+#include <stdio.h>
+float areacirculo(float raio){
+  float area;
+  area=(raio*raio)*3.14;
+  return area;
+}
+void areaalvo(float raio){
+  float areaverdetotal, areaamarelatotal, areapreta, raiopreto, raioamarelo, raioverde,areaanelverde,areaanelamarelo;
+  raioverde=raio;
+  raiopreto=raio/3;
+  raioamarelo=raio*2/3;
+  areaverdetotal=areacirculo(raioverde);
+  areaamarelatotal=areacirculo(raioamarelo);
+  areapreta=areacirculo(raiopreto);
+  areaanelamarelo=areaamarelatotal-areapreta;
+  areaanelverde=areaverdetotal-areaamarelatotal;
+  printf("Area verde: %.2f; Area amarela: %.2f; Area preta: %2.f", areaanelverde, areaanelamarelo, areapreta);
+  return;
+}
+int main(void) {
+  float raio;
+  printf("Qual é o raio do círculo verde?");
+  scanf("%f",&raio);
+  void areaalvo(float raio);
+  areaalvo(raio);
+  return 0;
+}

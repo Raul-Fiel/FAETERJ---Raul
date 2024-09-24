@@ -1,0 +1,15 @@
+#include <stdio.h>
+#define TAMANHO 5
+
+int main() {
+  int matriculas[TAMANHO] = {1234, 234, 9871, 7878, 4356};
+  int ramais[TAMANHO] = {888, 777, 777, 666, 111};
+
+  printf("Matricula do funcionário | Ramal\n");
+  printf("-------------------------|------\n");
+  for (int i = 0; i < TAMANHO; i++) {
+      printf("%14d          |  %3d\n", matriculas[i], ramais[i]);
+  }
+
+return 0;
+} 

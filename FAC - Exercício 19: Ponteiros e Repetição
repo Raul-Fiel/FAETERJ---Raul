@@ -1,0 +1,40 @@
+//Raul de Souza Fiel Faria
+#include <stdio.h>
+int obterRGB(int numeroCor, int *R, int *G, int *B) {
+  int cores[8][3] = {
+    {255, 255, 255}, // Branco
+    {0, 0, 255},     // Azul
+    {255, 0, 0},     // Vermelho
+    {0, 255, 0},     // Verde
+    {255, 255, 0},   // Amarelo
+    {255, 0, 255},   // Magenta
+    {0, 255, 255},   // Ciano
+    {0, 0, 0}        // Preto
+  };
+  if (numeroCor >= 1 && numeroCor <= 8) {
+    *R = cores[numeroCor - 1][0];
+    *G = cores[numeroCor - 1][1];
+    *B = cores[numeroCor - 1][2];
+    return 0; // Retorna 0 para indicar sucesso
+  } else {
+    printf("Número de cor inválido.\n");
+    return -1; // Retorna -1 para indicar falha
+  }
+}
+int main() {
+  int matricula = 0, numeroCor, R, G, B;
+  while (matricula != -1) {
+    printf("Digite a matrícula do aluno: ");
+    scanf("%d", &matricula);
+    if (matricula != -1) {
+      printf("Digite o número da cor preferida do aluno: ");
+      scanf("%d", &numeroCor);
+    if (obterRGB(numeroCor, &R, &G, &B)) {
+       printf("Matrícula: %d\n", matricula);
+       printf("Número da cor: %d\n", numeroCor);
+       printf("Valores RGB: R = %d, G = %d, B = %d\n\n", R, G, B);
+    } 
+    }  
+  }
+  return 0;
+}

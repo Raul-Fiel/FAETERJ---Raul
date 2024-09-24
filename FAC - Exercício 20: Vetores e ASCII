@@ -1,0 +1,20 @@
+#include <stdio.h>
+#define TAMANHO_MAXIMO 1000
+void traduzir(int lSecreta[], int tamanho) {
+  int i;
+  printf("Mensagem traduzida: ");
+  for(i = 0; i < tamanho; i++) {
+    if (lSecreta[i] == 0) {
+      printf(" ");
+    } 
+    else {
+    printf("%c", lSecreta[i] + 96);
+    }
+  }
+}
+int main() {
+  int lSecreta[] = {2, 15, 13, 0, 4, 9, 1};
+  int tamanho = 7;
+  traduzir(lSecreta, tamanho);
+  return 0;
+}

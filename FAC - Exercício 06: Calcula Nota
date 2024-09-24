@@ -15,10 +15,13 @@ int main(void) {
       printf (" Gostaríamos de convidá-lo para a monitoria!");
     }
   }
-  if (media<=6 && media>=4){
-    printf (" Infelizmente você ainda não foi aprovado, terá que realizar a prova final");}
-  if (media<4){
-      printf (" Infelizmente você não foi aprovado");
+  else{
+    if(media>=4){
+    printf (" Infelizmente você ainda não foi aprovado, terá que realizar a prova final");
+    }
+    else {
+    printf (" Infelizmente você não foi aprovado");
+    }
   }
   
   return 0;

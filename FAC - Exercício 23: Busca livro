@@ -1,0 +1,58 @@
+#include <stdio.h>
+#define obrasMaximo 20000
+#define assuntoMaximo 300
+#define matriculaMaximo 2000
+
+int verificaMatricula(int matricula, int vMatricula[]){
+  for (int i=0; i<matriculaMaximo; i++ ){
+    if (matricula==vMatricula[i]){
+      return 0;
+    }
+  }
+  return -1;
+}
+int busca(int n, int v[], int TAM){
+  for (int i=0; i<n; i++){
+    if (v[i]==TAM){
+      return i;
+    }
+  }
+  return -1;
+}
+
+int main(void) {
+  int matricula, cadastra, novaMatricula;
+  int vMatricula[matriculaMaximo]={754,254,123,536,895};
+  int vObra[obrasMaximo]={10,3,18,5,24};
+  int vAssunto[assuntoMaximo]={1,2,3,4};
+  int vLocal[3]={1,2,3};
+
+  printf ("Matrícula?");
+  scanf("%d",&matricula);
+  while (matricula >0){
+    if (busca(matricula, vMatricula, matriculaMaximo) != -1 ){
+      // consultaObras();
+    }
+    else{
+      printf ("Matrícula não existente, gostaria de cadastrar? 1- SIM / 2 - NÃO");
+      scanf ("%d", &cadastra);
+      if (cadastra == 1){
+        printf("\nDigite matrícula:");
+        scanf("%d", &novaMatricula);
+        for (int i=0; i<matriculaMaximo; i++){
+          if (vMatricula[i] <= 0){
+            vMatricula[i]=novaMatricula;
+          }
+        }
+      }
+    }
+    printf ("Matrícula?");
+    scanf("%d",&matricula);
+  }
+  for (int i=0; i<matriculaMaximo; i++){
+    if (vMatricula[i] > 0){
+      printf ("%d",vMatricula[i]);
+    }
+  }  
+  return 0;
+}

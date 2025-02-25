@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void geraMat(int n, int mat[n][n]) {
+   int i, j;
+   for (i = 0; i < n; i++) {
+     for (j = 0; j < n; j++) {
+       mat[i][j] = i + j + 1;
+     }
+   }
+}
+
+void exibirMatriz(int lin, int col, int m[lin][col]) {
+	int i, j;
+	for (i = 0; i < lin; i++) {
+		for (j = 0; j < col; j++) {
+			printf("%3d ", m[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int main() {
+  int n;
+  printf("Qual o tamanho da matriz NxN? ");
+  scanf("%d", &n);
+
+  // Declaração da matriz
+  int mat[n][n];
+
+  // Preenchendo e exibindo a matriz
+  geraMat(n, mat);
+  exibirMatriz(n, n, mat);
+
+  return 0;
+}

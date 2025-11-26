@@ -1,5 +1,4 @@
-1. DDL - Criação do Banco de Dados
-SQL
+
 -- =============================================
 -- 1. Tabelas de Apoio e Estrutura
 -- =============================================
@@ -141,11 +140,8 @@ CREATE TABLE Manutencao (
 );
 
 
-2. Scripts Operacionais (Exemplos de Uso)
-Aqui está como o sistema deve se comportar nas operações descritas no minimundo.
-A. Realizar uma Reserva (Snapshot de Preço)
-O sistema deve copiar o preço da categoria para a locação.
-SQL
+-- Scripts Operacionais (Exemplos de Uso)
+
 -- 1. Obter o preço atual da categoria 'Plus' (ID 2)
 -- Digamos que retorne 150.00
 
@@ -166,9 +162,8 @@ INSERT INTO Locacao (
 INSERT INTO LancamentoFinanceiro (id_lancamento, id_locacao, tipo_lancamento, valor, status_pagamento)
 VALUES (5001, 1001, 'Diarias', (150.00 * 5), 'Pago');
 
-B. Devolução em Local Diferente (Cobrança de Taxa)
-Regra: Cliente devolve na Loja 2, mas pegou na Loja 1. Cobra taxa.
-SQL
+-- Devolução em Local Diferente (Cobrança de Taxa)
+-- Regra: Cliente devolve na Loja 2, mas pegou na Loja 1. Cobra taxa.
 -- 1. Atualizar a locação finalizando
 UPDATE Locacao 
 SET data_devolucao_real = NOW(),
@@ -185,11 +180,7 @@ VALUES (5002, 1001, 'Taxa Devolução', 120.00, 'Pendente');
 -- Sistema tenta cobrar o cartão tokenizado e depois muda para 'Pago'
 
 
-3. Relatórios Gerenciais (Versão Enterprise)
-Estes relatórios agora usam a tabela LancamentoFinanceiro para precisão contábil e Manutencao desvinculada.
-Relatório 1: Lucratividade Real por Veículo (ROI)
-Receita Real (apenas o que foi pago) - Custo de Manutenção.
-SQL
+-- Relatórios Gerenciais (Versão Enterprise)
 SELECT 
     v.modelo,
     v.placa,
@@ -213,9 +204,9 @@ LEFT JOIN (
 ) Custo ON v.id_veiculo = Custo.id_veiculo
 ORDER BY lucro_liquido DESC;
 
-Relatório 2: Unidades Mais Lucrativas (Faturamento)
-Considera onde o dinheiro foi gerado (Loja de Retirada).
-SQL
+--Relatório 2: Unidades Mais Lucrativas (Faturamento)
+--Considera onde o dinheiro foi gerado (Loja de Retirada).
+
 SELECT 
     loja.nome_unidade,
     COUNT(DISTINCT l.id_locacao) AS qtd_locacoes,
